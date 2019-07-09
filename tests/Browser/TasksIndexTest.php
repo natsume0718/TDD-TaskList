@@ -19,10 +19,10 @@ class TasksIndexTest extends DuskTestCase
         $tasks = Task::all(['title']);
 
         $this->browse(function (Browser $browser) {
-            foreach ($tasks as $title) {
+            foreach ($tasks as $task) {
                 $browser->visit('/tasks')
-                    ->assertSee($title)
-                    ->screenshot("tasks_" . $title);
+                    ->assertSee($task->title)
+                    ->screenshot("tasks_" .  $task->title);
             }
         });
     }
