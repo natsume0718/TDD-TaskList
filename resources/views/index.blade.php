@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-    {{ asset('css/app.css') }}
+    
+
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body>
@@ -23,7 +25,7 @@
             </li>
             @endforeach
         </ul>
-        {{ asset('css/app.js') }}
+        <script src="{{ asset('css/app.js') }}"></script>
 </body>
 
 </html>
