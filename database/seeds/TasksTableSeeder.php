@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TasksTableSeeder extends Seeder
 {
@@ -11,6 +12,8 @@ class TasksTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('tasks')->delete();
+
+        factory(App\Task::class, 10)->create();
     }
 }

@@ -1,9 +1,11 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Task;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(Task::class, function (Faker $faker) {
     return [
-        //
+        'title' => $faker->sentence(),
+        'executed' => $faker->boolean()
     ];
 });
