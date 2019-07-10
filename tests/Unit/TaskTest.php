@@ -22,4 +22,17 @@ class TaskTest extends TestCase
         //10より少ないはず
         $this->assertLessThan(10, count($taskNotFinished));
     }
+
+    /**
+     * 詳細情報取得テスト
+     * @test
+     */
+    public function 詳細情報取得テスト()
+    {
+        $task = Task::find(2);
+        $this->assertEquals(2, $task->id);
+        //ない番号取得
+        $task_notExist = Task::find(9999);
+        $this->assertNull($task_notExist);
+    }
 }
