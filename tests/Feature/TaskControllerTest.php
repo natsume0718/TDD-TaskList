@@ -19,4 +19,16 @@ class TaskControllerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * Get All Tasks Path Test
+     *
+     * @test
+     */
+    public function タスク詳細ルート確認()
+    {
+        $response = $this->get('/tasks/1');
+
+        $response->assertStatus(200);
+    }
 }
