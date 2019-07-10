@@ -33,4 +33,16 @@ class TaskControllerTest extends TestCase
         $response_notfound = $this->get('/task/9999');
         $response_notfound->assertStatus(404);
     }
+
+    /**
+     * @test
+     */
+    public function タスク更新ルート確認()
+    {
+        $data = [];
+
+        $response = $this->put(route('task.update', ['id' => 1]), $data);
+
+        $response->assertStatus(302);
+    }
 }

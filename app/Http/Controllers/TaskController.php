@@ -21,4 +21,9 @@ class TaskController extends Controller
             abort(404);
         return view('show', compact('task'));
     }
+
+    public function update($id)
+    {
+        return redirect()->route('task.show', ['id' => $id]);
+    }
 }
