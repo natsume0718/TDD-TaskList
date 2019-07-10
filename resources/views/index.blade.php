@@ -18,7 +18,7 @@
         <h2>Tasks List</h2>
         <ul>
             @foreach ($tasks as $task)
-            <li>{{ $task->title }}</li>
+            <li><a href="{{ route('task.show',['id'=>$task->id] ) }}">{{ $task->title }}</a>{</li>
              <li>
                  <input type="checkbox" name="checkbox_{{ $task->id }}" {!! $task->executed ?
                 'checked="checked"' : '' !!}>
