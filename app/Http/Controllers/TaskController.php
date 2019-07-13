@@ -36,6 +36,6 @@ class TaskController extends Controller
 
     public function add()
     {
-        return '';
+        return view('add');
     }
 }
