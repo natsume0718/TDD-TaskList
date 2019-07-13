@@ -11,60 +11,28 @@ use Faker\Factory as Faker;
 
 class TaskTest extends TestCase
 {
-
     use DatabaseTransactions;
 
-    /**
-     * @test
-     */
-    public function Seederデータ取得テスト()
+    public function testGetTaskDetailNotExists()
     {
-        $tasks = Task::all();
-        //10件
-        $this->assertEquals(10, count($tasks));
-        $taskNotFinished = Task::where('executed', false)->get();
-        //10より少ないはず
-        $this->assertLessThan(10, count($taskNotFinished));
+        $tasks = Task::find(0);
+        $this->assertNull($tasks);
     }
 
-    /**
-     * 詳細情報取得テスト
-     * @test
-     */
-    public function 詳細情報取得テスト()
+    public function testUpdateTask()
     {
-        $task = Task::find(2);
-        $this->assertEquals(2, $task->id);
-        //ない番号取得
-        $task_notExist = Task::find(9999);
-        $this->assertNull($task_notExist);
-    }
-
-    /**
-     * タスク更新テスト
-     * @test
-     */
-    public function タスク更新()
-    {
-        $faker = Faker::create();
-        $title = $faker->sentence();
-        $executed = $faker->boolean();
         $task = Task::create([
-            'title' => $title,
-            'executed' => $executed
+            'title' => 'test',
+            'executed' => false,
         ]);
 
-        $this->assertEquals($title, $task->title);
+        $this->assertEquals('test', $task->title);
+        $this->assertFalse($task->executed);
 
-        $title2 = $faker->sentence();
-        $executed2 = $faker->boolean();
-        $task->fill([
-            'title' => $title2,
-            'executed' => $executed2
-        ]);
+        $task->fill(['title' => 'テスト']);
         $task->save();
 
         $task2 = Task::find($task->id);
-        $this->assertEquals($title2, $task2->title);
+        $this->assertEquals('テスト', $task2->title);
     }
 }
