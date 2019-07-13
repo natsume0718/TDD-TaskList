@@ -22,8 +22,15 @@ class TaskController extends Controller
         return view('show', compact('task'));
     }
 
-    public function update($id)
+    public function update($id, Request $request)
     {
+        $task = Task::find($id);
+        if ($task === null) {
+            abort(404);
+        }
+        $request->validate(['title' => 'required|max:255']);
+        $task->fill($request->all())->save();
+
         return redirect()->route('task.show', ['id' => $id]);
     }
 }

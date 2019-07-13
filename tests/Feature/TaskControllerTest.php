@@ -5,9 +5,14 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
 
 class TaskControllerTest extends TestCase
 {
+
+    use DatabaseTransactions;
+
     /**
      * Get All Tasks Path Test
      *
@@ -39,10 +44,13 @@ class TaskControllerTest extends TestCase
      */
     public function タスク更新ルート確認()
     {
-        $data = [];
-
+        $data = [
+            'title' => 'test title',
+        ];
+        $this->assertDatabaseMissing('tasks', $data);
         $response = $this->put(route('task.update', ['id' => 1]), $data);
 
-        $response->assertStatus(302);
+        $response->assertStatus(302)->assertRedirect(route('task.show', ['id' => 1]));
+        $this->assertDatabaseHas('tasks', $data);
     }
 }
