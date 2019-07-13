@@ -33,4 +33,9 @@ class TaskController extends Controller
 
         return redirect()->route('task.show', ['id' => $id]);
     }
+
+    public function add()
+    {
+        return '';
+    }
 }

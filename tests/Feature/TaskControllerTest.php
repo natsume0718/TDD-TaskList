@@ -65,4 +65,14 @@ class TaskControllerTest extends TestCase
         $response->assertStatus(302)->assertRedirect('/tasks/' . $this->task->id);
         $this->assertDatabaseHas('tasks', $data);
     }
+
+    /**
+     * @test
+     */
+    public function タスク追加ルート確認()
+    {
+        $response = $this->get(route('task.add'));
+
+        $response->assertStatus(200);
+    }
 }
