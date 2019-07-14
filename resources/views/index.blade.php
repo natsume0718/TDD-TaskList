@@ -15,7 +15,7 @@
 <body>
 
     <div class="container">
-        <div class="col-md-2">
+        <div class="btn btn-lg">
             {{ link_to_action('TaskController@add',
             '新規追加',
             [],
