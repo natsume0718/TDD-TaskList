@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-    
+
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
@@ -15,12 +15,18 @@
 <body>
 
     <div class="container">
+        <div class="col-md-2">
+            {{ link_to_action('TaskController@add',
+            '新規追加',
+            [],
+            ['class' => 'btn btn-primary btn-block']) }}
+        </div>
         <h2>Tasks List</h2>
         <ul>
             @foreach ($tasks as $task)
             <li><a href="{{ route('task.show',['id'=>$task->id] ) }}">{{ $task->title }}</a></li>
-             <li>
-                 <input type="checkbox" name="checkbox_{{ $task->id }}" {!! $task->executed ?
+            <li>
+                <input type="checkbox" name="checkbox_{{ $task->id }}" {!! $task->executed ?
                 'checked="checked"' : '' !!}>
             </li>
             @endforeach

@@ -34,4 +34,15 @@ class TasksIndexTest extends DuskTestCase
                 ->assertSee($task->title);
         });
     }
+
+    public function testIndexToNew()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/tasks')
+                ->assertSeeLink('新規追加')
+                ->clickLink('新規追加')
+                ->waitForLocation('/tasks/add')
+                ->assertPathIs('/tasks/add');
+        });
+    }
 }

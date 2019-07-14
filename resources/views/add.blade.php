@@ -22,6 +22,7 @@
                 @endforeach
             </ul>
         </div>
+        @endif
         <h2>New Task</h2>
         <div class="row">
             <div class="col-md-offset-2 col-md-8">
