@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/tasks', 'TaskController@index')->name('task.index');
+Route::post('/tasks/', 'TaskController@create');
 Route::get('/tasks/{id}', 'TaskController@show')->where('id', '[0-9]+')->name('task.show');
 Route::put('/tasks/{id}', 'TaskController@update')->where('id', '[0-9]+')->name('task.update');
 Route::get('/tasks/add', 'TaskController@add')->name('task.add');
-Route::post('/tasks/add', 'TaskController@create');
