@@ -49,4 +49,11 @@ class TaskController extends Controller
 
         return redirect('/tasks');
     }
+
+    public function delete($id)
+    {
+        if ($id)
+            Task::destroy($id);
+        return redirect()->route('task.index');
+    }
 }

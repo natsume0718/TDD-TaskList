@@ -92,4 +92,15 @@ class TaskControllerTest extends TestCase
         $response->assertStatus(302)
             ->assertRedirect('/tasks/add');
     }
+
+    public function タスク削除ルート確認()
+    {
+        $this->assertDatabaseHas('tasks', $this->task->toArray());
+
+        $response = $this->delete(route('task.delete', ['id' => $this->task->id]));
+        $response->assertStatus(302)
+            ->assertRedirect('/tasks/');
+
+        $this->assertDatabaseMissing('tasks', $this->task->toArray());
+    }
 }

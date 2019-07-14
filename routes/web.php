@@ -20,3 +20,4 @@ Route::post('/tasks/', 'TaskController@create');
 Route::get('/tasks/{id}', 'TaskController@show')->where('id', '[0-9]+')->name('task.show');
 Route::put('/tasks/{id}', 'TaskController@update')->where('id', '[0-9]+')->name('task.update');
 Route::get('/tasks/add', 'TaskController@add')->name('task.add');
+Route::delete('/tasks/{id}', 'TaskController@delete')->where('id', '[0-9]+')->name('task.delete');
