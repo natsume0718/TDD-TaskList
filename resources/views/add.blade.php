@@ -14,6 +14,14 @@
 
 <body>
     <div class="container">
+         @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         <h2>New Task</h2>
         <div class="row">
             <div class="col-md-offset-2 col-md-8">

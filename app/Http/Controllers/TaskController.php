@@ -38,4 +38,15 @@ class TaskController extends Controller
     {
         return view('add');
     }
+
+    public function create(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:512',
+        ]);
+
+        Task::create(['title' => $request->title, 'executed' => false]);
+
+        return redirect('/tasks');
+    }
 }

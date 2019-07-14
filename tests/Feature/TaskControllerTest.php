@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-
 class TaskControllerTest extends TestCase
 {
 
@@ -74,5 +73,23 @@ class TaskControllerTest extends TestCase
         $response = $this->get(route('task.add'));
 
         $response->assertStatus(200);
+    }
+
+    /**
+     *@test 
+     */
+    public function タスク追加バリデーションエラー()
+    {
+        $data = [
+            'title' => str_random(513)
+        ];
+
+        $response = $this->from('/tasks/add')
+            ->post('/tasks/', $data);
+
+        $response->assertSessionHasErrors(['title' => 'The title may not be greater than 512 characters.']);
+
+        $response->assertStatus(302)
+            ->assertRedirect('/tasks/add');
     }
 }
